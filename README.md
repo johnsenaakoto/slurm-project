@@ -31,11 +31,12 @@ diagnostic logs with actionable failure context.
 
 | Module | Outcome | Status |
 | --- | --- | --- |
+| [`00-reset`](modules/00-reset/README.md) | Permanently remove the configured VMs for a clean rebuild | Complete |
 | [`01-create-nodes`](modules/01-create-nodes/README.md) | Provision and verify three Ubuntu VMs | Complete |
 | [`02-networking`](modules/02-networking/README.md) | Configure resolution; verify networking, identity, and time | Complete |
 | [`03-software-and-munge`](modules/03-software-and-munge/README.md) | Install Slurm software and validate shared authentication | Complete |
-| `04-slurm` | Configure and start Slurm services | Planned |
-| `05-jobs` | Validate scheduling with `srun` and `sbatch` | Planned |
+| [`04-slurm`](modules/04-slurm/README.md) | Discover resources, configure services, and verify idle workers | Complete |
+| [`05-jobs`](modules/05-jobs/README.md) | Run and validate a two-node batch job | Complete |
 
 ## Quick start
 
@@ -53,10 +54,21 @@ multipass version
 ./modules/01-create-nodes/create-nodes.sh
 ./modules/02-networking/configure-networking.sh
 ./modules/03-software-and-munge/install-and-validate.sh
+./modules/04-slurm/configure-and-start.sh
+./modules/05-jobs/validate-jobs.sh
 ```
 
 Use `--dry-run` to preview a module or `--config /path/to/cluster.env` to use a
 different complete configuration.
+
+To preview a clean reset before rebuilding:
+
+```bash
+./modules/00-reset/reset-cluster.sh --dry-run
+```
+
+The live reset permanently deletes the three configured VMs and requires an
+explicit confirmation. See the [reset module](modules/00-reset/README.md).
 
 ## Configuration and operations
 
@@ -64,8 +76,9 @@ different complete configuration.
 addresses are discovered at runtime, and secrets such as the MUNGE key are
 never stored in configuration.
 
-Runtime logs are written to `logs/` and excluded from version control. Scripts
-do not delete existing Multipass instances.
+Runtime logs are written to `logs/` and excluded from version control. The
+provisioning modules do not delete existing instances; only the explicitly
+invoked reset module does so.
 
 ```bash
 multipass list

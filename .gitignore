@@ -1,1 +1,10 @@
 logs/
+.DS_Store
+slurm-diagnostics.txt
+/slurm.conf
+slurm-*.out
+*.key
+*.pem
+.env
+.env.*
+config/cluster.local.env

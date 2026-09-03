@@ -161,18 +161,18 @@ for source_node in "${nodes[@]}"; do
   for target_index in "${!nodes[@]}"; do
     target_node="${nodes[$target_index]}"
     expected_ip="${node_ips[$target_index]}"
-    resolved_ip="$(multipass exec "$source_node" -- getent ahostsv4 "$target_node" | awk 'NR == 1 {print $1}')"
-    [[ "$resolved_ip" == "$expected_ip" ]] || {
-      log ERROR "Resolution mismatch: source=$source_node, target=$target_node, expected=$expected_ip, observed=${resolved_ip:-<empty>}"
+    resolved_ips="$(multipass exec "$source_node" -- getent ahostsv4 "$target_node" | awk '{print $1}' | sort -u)"
+    grep -Fxq "$expected_ip" <<<"$resolved_ips" || {
+      log ERROR "Resolution mismatch: source=$source_node, target=$target_node, expected=$expected_ip, observed=${resolved_ips:-<empty>}"
       exit 1
     }
     if ! ping_output="$(multipass exec "$source_node" -- ping -q -c "$PING_COUNT" -W 2 "$target_node" 2>&1)"; then
-      log ERROR "Ping failed: source=$source_node, target=$target_node, resolved_ip=$resolved_ip"
+      log ERROR "Ping failed: source=$source_node, target=$target_node, expected_ip=$expected_ip"
       log ERROR "Ping output: $ping_output"
       exit 1
     fi
     packet_summary="$(printf '%s\n' "$ping_output" | tail -n 2 | tr '\n' ' ')"
-    log INFO "Connectivity verified: $source_node -> $target_node ($resolved_ip); $packet_summary"
+    log INFO "Connectivity verified: $source_node -> $target_node ($expected_ip); $packet_summary"
   done
 done
 

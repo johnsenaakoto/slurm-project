@@ -174,11 +174,7 @@ for worker in "$WORKER1_NAME" "$WORKER2_NAME"; do
     apt-get install -y "${worker_packages[@]}"
 done
 
-log INFO "Stopping Slurm daemons until slurm.conf is installed by Module 04"
-multipass exec "$CONTROLLER_NAME" -- sudo systemctl disable --now slurmctld >/dev/null 2>&1 || true
-for worker in "$WORKER1_NAME" "$WORKER2_NAME"; do
-  multipass exec "$worker" -- sudo systemctl disable --now slurmd >/dev/null 2>&1 || true
-done
+log INFO "Slurm daemon lifecycle is deferred to Module 04"
 
 log INFO "Phase 4/7: synchronize the controller MUNGE key"
 MUNGE_MAINTENANCE=true

@@ -8,8 +8,8 @@ a shared authentication domain using the controller's MUNGE key.
 | Controller | `munge slurmctld slurm-client` |
 | Worker | `munge slurmd slurm-client` |
 
-Slurm daemons are deliberately stopped after installation. They cannot start
-correctly until Module 04 supplies `slurm.conf`; an `srun --version` command
+Slurm daemon lifecycle is deliberately left to Module 04. They cannot start
+correctly until that module supplies `slurm.conf`; an `srun --version` command
 may also attempt configuration discovery and fail at this stage. This module
 uses daemon-specific `-V` commands and package metadata for version checks.
 
@@ -22,8 +22,10 @@ Mac filesystem, and no temporary credential files are left in the VMs.
 If a run is interrupted during key maintenance, failure cleanup removes the
 known staged-key path and attempts to restart MUNGE on every node.
 
-Re-running the module is safe: APT installation is idempotent, worker keys are
-replaced with the controller key, and MUNGE is restarted and revalidated.
+Re-running the module is safe for this lab: APT installation is idempotent,
+worker keys are replaced with the controller key, and MUNGE is restarted and
+revalidated. Run Module 04 afterward so the Slurm daemons load the current key
+and configuration. Do not run provisioning modules while jobs must remain live.
 
 ## Configure
 
