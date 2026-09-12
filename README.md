@@ -37,6 +37,8 @@ diagnostic logs with actionable failure context.
 | [`03-software-and-munge`](modules/03-software-and-munge/README.md) | Install Slurm software and validate shared authentication | Complete |
 | [`04-slurm`](modules/04-slurm/README.md) | Discover resources, configure services, and verify idle workers | Complete |
 | [`05-jobs`](modules/05-jobs/README.md) | Run and validate a two-node batch job | Complete |
+| [`06-shared-storage`](modules/06-shared-storage/README.md) | Configure shared NFS storage across the controller and workers | Complete |
+| [`07-arrays-and-dependencies`](modules/07-arrays-and-dependencies/README.md) | Run a Slurm array job and an `afterok` summary dependency | Blocked by accounting config |
 
 ## Quick start
 
@@ -56,6 +58,8 @@ multipass version
 ./modules/03-software-and-munge/install-and-validate.sh
 ./modules/04-slurm/configure-and-start.sh
 ./modules/05-jobs/validate-jobs.sh
+./modules/06-shared-storage/configure-shared-storage.sh
+./modules/07-arrays-and-dependencies/run-arrays-and-dependencies.sh
 ```
 
 Use `--dry-run` to preview a module or `--config /path/to/cluster.env` to use a
