@@ -40,6 +40,7 @@ diagnostic logs with actionable failure context.
 | [`06-shared-storage`](modules/06-shared-storage/README.md) | Configure shared NFS storage across the controller and workers | Complete |
 | [`07-arrays-and-dependencies`](modules/07-arrays-and-dependencies/README.md) | Run a Slurm array job and an `afterok` summary dependency | Blocked by accounting config |
 | [`08-resource-constrained-pending`](modules/08-resource-constrained-pending/README.md) | Observe a valid job pending because worker CPUs are fully allocated | Complete |
+| [`09-node-drain-recovery`](modules/09-node-drain-recovery/README.md) | Drain, fail, recover, and resume Slurm worker nodes | Complete |
 
 ## Quick start
 
@@ -62,6 +63,7 @@ multipass version
 ./modules/06-shared-storage/configure-shared-storage.sh
 ./modules/07-arrays-and-dependencies/run-arrays-and-dependencies.sh
 ./modules/08-resource-constrained-pending/run-resource-pending.sh
+./modules/09-node-drain-recovery/run-node-drain-recovery.sh
 ```
 
 Use `--dry-run` to preview a module or `--config /path/to/cluster.env` to use a
