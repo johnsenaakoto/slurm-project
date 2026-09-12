@@ -38,9 +38,10 @@ diagnostic logs with actionable failure context.
 | [`04-slurm`](modules/04-slurm/README.md) | Discover resources, configure services, and verify idle workers | Complete |
 | [`05-jobs`](modules/05-jobs/README.md) | Run and validate a two-node batch job | Complete |
 | [`06-shared-storage`](modules/06-shared-storage/README.md) | Configure shared NFS storage across the controller and workers | Complete |
-| [`07-arrays-and-dependencies`](modules/07-arrays-and-dependencies/README.md) | Run a Slurm array job and an `afterok` summary dependency | Blocked by accounting config |
+| [`07-arrays-and-dependencies`](modules/07-arrays-and-dependencies/README.md) | Run a Slurm array job and an `afterok` summary dependency | Complete after accounting setup |
 | [`08-resource-constrained-pending`](modules/08-resource-constrained-pending/README.md) | Observe a valid job pending because worker CPUs are fully allocated | Complete |
 | [`09-node-drain-recovery`](modules/09-node-drain-recovery/README.md) | Drain, fail, recover, and resume Slurm worker nodes | Complete |
+| [`10-accounting-db`](modules/10-accounting-db/README.md) | Enable `slurmdbd` accounting and inspect completed jobs in MariaDB | Complete |
 
 ## Quick start
 
@@ -61,6 +62,7 @@ multipass version
 ./modules/04-slurm/configure-and-start.sh
 ./modules/05-jobs/validate-jobs.sh
 ./modules/06-shared-storage/configure-shared-storage.sh
+./modules/10-accounting-db/configure-accounting-db.sh
 ./modules/07-arrays-and-dependencies/run-arrays-and-dependencies.sh
 ./modules/08-resource-constrained-pending/run-resource-pending.sh
 ./modules/09-node-drain-recovery/run-node-drain-recovery.sh

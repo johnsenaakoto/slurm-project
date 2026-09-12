@@ -57,6 +57,5 @@ cat /shared/arrays-demo/logs/summary-*.out
 cat /shared/arrays-demo/outputs/summary.txt
 ```
 
-If a job is pending with `InvalidAccount`, Slurm accounting enforcement is
-enabled before account associations have been configured. That belongs to the
-later accounting lab.
+If a job is pending with `InvalidAccount`, run the accounting lab in
+[`10-accounting-db`](../10-accounting-db/README.md), then rerun this module.
