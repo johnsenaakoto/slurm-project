@@ -7,6 +7,8 @@
 #SBATCH --time=00:02:00
 #SBATCH --output=/home/ubuntu/slurm-%j.out
 
+set -euo pipefail
+
 echo "Job $SLURM_JOB_ID started at $(date)"
 echo "Allocated nodes: $SLURM_JOB_NODELIST"
 

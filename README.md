@@ -42,6 +42,10 @@ diagnostic logs with actionable failure context.
 | [`08-resource-constrained-pending`](modules/08-resource-constrained-pending/README.md) | Observe a valid job pending because worker CPUs are fully allocated | Complete |
 | [`09-node-drain-recovery`](modules/09-node-drain-recovery/README.md) | Drain, fail, recover, and resume Slurm worker nodes | Complete |
 | [`10-accounting-db`](modules/10-accounting-db/README.md) | Enable `slurmdbd` accounting and inspect completed jobs in MariaDB | Complete |
+| [`11-advanced-slurm`](modules/11-advanced-slurm/README.md) | Cornell course notes and examples for parameters and dependencies | Basics and job submission studied |
+
+See the [standalone job notes](jobs/README.md) for `hello-slurm.sh` and the
+module 11 notes for explanations of each course script.
 
 ## Quick start
 
